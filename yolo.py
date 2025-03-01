@@ -29,7 +29,8 @@ AMP: Final[bool] = False
 MODEL_NAME: Final[str] = f"{MODEL_TYPE.lower()}.pt"
 
 DATASETS_PATH: Final[Path] = Path("datasets")
-DATASET_YAML: Final[Path] = DATASETS_PATH / DATASET_USED / "data.yaml"
+DATASET_VAL_YAML: Final[Path] = DATASETS_PATH / DATASET_USED / "data_val.yaml"
+DATASET_TEST_YAML: Final[Path] = DATASETS_PATH / DATASET_USED / "data_test.yaml"
 
 
 # Load the model
@@ -37,7 +38,7 @@ model: Final[YOLO] = YOLO(MODEL_NAME)
 
 # Train the model
 results = model.train(
-    data=DATASET_YAML,
+    data=DATASET_VAL_YAML,
     epochs=EPOCHS,
     patience=PATIENCE,
     batch=BATCH,
@@ -55,7 +56,7 @@ results = model.train(
     amp=AMP
 )
 
-# General validation parameters
+# General test parameters
 VAL_IMAGE_SIZE: Final[int] = IMAGE_SIZE
 VAL_BATCH: Final[int] = 64
 VAL_SAVE_JSON: Final[bool] = True
@@ -63,9 +64,9 @@ VAL_MAX_DET: Final[int] = 50
 VAL_PLOTS: Final[bool] = True
 VAL_PROJECT: Final[str] = PROJECT
 
-# Validate the model
+# Test the model
 metrics = model.val(
-    data=DATASET_YAML,
+    data=DATASET_TEST_YAML,
     imgsz=VAL_IMAGE_SIZE,
     batch=VAL_BATCH,
     save_json=VAL_SAVE_JSON,
