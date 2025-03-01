@@ -6,3 +6,4 @@ runs/
 
 # Cache files
 *.cache
+*.npy

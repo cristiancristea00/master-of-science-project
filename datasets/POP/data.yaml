@@ -1,5 +1,5 @@
 # Dataset path
-path: /home/cristi/Documents/ML/datasets/POP
+path: /export/home/electronica/stud/c/cristian.cristea/master-of-science-project/datasets/POP
 
 # Dataset split relative paths
 train: train/images

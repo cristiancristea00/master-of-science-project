@@ -1,4 +1,3 @@
-from os import SEEK_DATA
 from pathlib import Path
 from typing import Final
 from ultralytics import YOLO
@@ -12,7 +11,7 @@ DATASET_USED: Final[str] = "POP"
 # General parameters
 EPOCHS: Final[int] = 1000
 PATIENCE: Final[int] = 50
-BATCH: Final[int] = -1
+BATCH: Final[float] = 0.80
 IMAGE_SIZE: Final[int] = 1024
 SAVE: Final[bool] = True
 CACHE: Final[bool] = True
@@ -22,7 +21,7 @@ EXIST_OK: Final[bool] = True
 PRETRAINED: Final[bool] = True
 OPTIMIZER: Final[str] = "auto"
 SEED: Final[int] = 42
-DETERMINISTIC: Final[bool] = True
+DETERMINISTIC: Final[bool] = False
 PLOTS: Final[bool] = True
 AMP: Final[bool] = False
 
