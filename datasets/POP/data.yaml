@@ -1,0 +1,11 @@
+# Dataset path
+path: /home/cristi/Documents/ML/datasets/POP
+
+# Dataset split relative paths
+train: train/images
+val: val/images
+test: test/images
+
+# Classes
+names:
+    0: person
