@@ -8,7 +8,7 @@ MODEL_TYPE: Final[str] = "YOLO11n"
 # Dataset used
 DATASET_USED: Final[str] = "POP"
 
-# General parameters
+# General train parameters
 EPOCHS: Final[int] = 1000
 PATIENCE: Final[int] = 50
 BATCH: Final[float] = 0.80
@@ -53,4 +53,23 @@ results = model.train(
     deterministic=DETERMINISTIC,
     plots=PLOTS,
     amp=AMP
+)
+
+# General validation parameters
+VAL_IMAGE_SIZE: Final[int] = IMAGE_SIZE
+VAL_BATCH: Final[int] = 64
+VAL_SAVE_JSON: Final[bool] = True
+VAL_MAX_DET: Final[int] = 50
+VAL_PLOTS: Final[bool] = True
+VAL_PROJECT: Final[str] = PROJECT
+
+# Validate the model
+metrics = model.val(
+    data=DATASET_YAML,
+    imgsz=VAL_IMAGE_SIZE,
+    batch=VAL_BATCH,
+    save_json=VAL_SAVE_JSON,
+    max_det=VAL_MAX_DET,
+    plots=VAL_PLOTS,
+    project=VAL_PROJECT
 )
