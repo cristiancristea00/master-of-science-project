@@ -1,0 +1,10 @@
+# Dataset path
+path: /export/home/electronica/stud/c/cristian.cristea/master-of-science-project/datasets/POP
+
+# Dataset split relative paths
+train: images/train
+val: images/val
+
+# Classes
+names:
+    0: person
