@@ -10,7 +10,7 @@ all: train
 .PHONY: train
 train:
 	@echo "Submitting YOLO training job..."
-	$(SBATCH_CMD) $(TRAINING_SCRIPT)
+	$(SBATCH_CMD) $(TRAINING_SCRIPT) $(MODEL) $(DATASET)
 	@echo "Job submitted. Check status with 'squeue -u cristian.cristea'."
 
 # Cleaning target - removes only .err and .out files

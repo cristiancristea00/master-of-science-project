@@ -38,9 +38,14 @@ echo "CUDA version: $(nvcc --version | grep release | awk '{print $6}' | cut -c2
 echo "=================================================="
 echo ""
 
+# Get model and dataset arguments
+MODEL=$1
+DATASET=$2
+
 # Run YOLO training
 echo "Starting YOLO training on $(date '+%A, %-d %B %Y, %I:%M:%S %p')"
-python yolo.py || { echo "YOLO training failed with exit code $?"; exit 1; }
+
+python yolo.py --model $MODEL --dataset $DATASET || { echo "YOLO training failed with exit code $?"; exit 1; }
 
 echo "Job completed successfully on $(date '+%A, %-d %B %Y, %I:%M:%S %p')"
 echo ""
