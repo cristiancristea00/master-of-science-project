@@ -5,8 +5,7 @@
 #SBATCH --gres=gpu:1                  # Request 1 GPU
 #SBATCH --mem=200G                    # Memory request (200 GB)
 #SBATCH --job-name=YOLO               # Job name
-#SBATCH --output=%j.out               # Standard output log
-#SBATCH --error=%j.err                # Standard error log
+#SBATCH --output=YOLO_%j.out          # Standard output log
 #SBATCH --mail-type=BEGIN,END,FAIL    # Mail type
 #SBATCH --mail-user=cristian.cristea@stud.etti.upb.ro
 

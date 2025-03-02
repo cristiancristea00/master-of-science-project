@@ -3,20 +3,20 @@ from typing import Final
 from ultralytics import YOLO
 
 # Model used
-MODEL_TYPE: Final[str] = "YOLO11n"
+MODEL_TYPE: Final[str] = "YOLO11m"
 
 # Dataset used
 DATASET_USED: Final[str] = "POP"
 
 # General train parameters
 EPOCHS: Final[int] = 1000
-PATIENCE: Final[int] = 50
-BATCH: Final[float] = 0.80
+PATIENCE: Final[int] = 100
+BATCH: Final[int] = -1
 IMAGE_SIZE: Final[int] = 1024
 SAVE: Final[bool] = True
 CACHE: Final[bool] = True
 WORKERS: Final[int] = 16
-PROJECT: Final[str] = "YOLO11"
+PROJECT: Final[str] = "YOLO"
 EXIST_OK: Final[bool] = True
 PRETRAINED: Final[bool] = True
 OPTIMIZER: Final[str] = "auto"
