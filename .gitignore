@@ -1,0 +1,9 @@
+# Runs directory
+runs/
+
+# Model files
+*.pt
+
+# Cache files
+*.cache
+*.npy
