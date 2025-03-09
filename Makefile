@@ -10,14 +10,14 @@ all: train
 .PHONY: train
 train:
 	@echo "Submitting YOLO training job..."
-	$(SBATCH_CMD) $(TRAINING_SCRIPT) $(MODEL) $(DATASET)
+	$(SBATCH_CMD) $(TRAINING_SCRIPT) $(MODEL) $(DATASET) $(SPECTRUM)
 	@echo "Job submitted. Check status with 'squeue -u cristian.cristea'."
 
 # Cleaning target - removes only .err and .out files
 .PHONY: clean
 clean:
 	@echo "Cleaning Slurm output files (.err and .out)..."
-	rm -f *.err *.out
+	rm -f *.out
 	@echo "Slurm output files cleaned."
 
 # Help target
@@ -25,5 +25,5 @@ clean:
 help:
 	@echo "Available targets:"
 	@echo "  train  - Submit YOLO training job to Slurm"
-	@echo "  clean  - Remove Slurm output files (.err and .out)"
+	@echo "  clean  - Remove Slurm output files (.out)"
 	@echo "  help   - Display this help message"

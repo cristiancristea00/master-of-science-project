@@ -1,0 +1,10 @@
+# Dataset path
+path: datasets/POP
+
+# Dataset split relative paths
+train: images/train
+val: images/val
+
+# Classes
+names:
+    0: person

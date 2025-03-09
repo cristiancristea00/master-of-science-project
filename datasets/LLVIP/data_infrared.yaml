@@ -1,0 +1,10 @@
+# Dataset path
+path: datasets/LLVIP
+
+# Dataset split relative paths
+train: infrared/images/train
+val: infrared/images/val
+
+# Classes
+names:
+    0: person
