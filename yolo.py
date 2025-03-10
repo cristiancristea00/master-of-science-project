@@ -4,9 +4,15 @@ from ultralytics import YOLO
 
 import argparse
 
+YOLO_V8_MODELS: Final[set] = { "YOLOv8n", "YOLOv8s", "YOLOv8m", "YOLOv8l", "YOLOv8x" }
+YOLO_V11_MODELS: Final[set] = { "YOLO11n", "YOLO11s", "YOLO11m", "YOLO11l", "YOLO11x" }
+YOLO_V12_MODELS: Final[set] = { "YOLO12n", "YOLO12s", "YOLO12m", "YOLO12l", "YOLO12x" }
+
+YOLO_MODELS: Final[set] = YOLO_V8_MODELS | YOLO_V11_MODELS | YOLO_V12_MODELS
+
 # Create a command line argument processor for model and dataset
 parser = argparse.ArgumentParser(description="YOLO Training and Testing")
-parser.add_argument("--model", "-m", type=str, default="YOLO12m", help="Model type", choices=("YOLO12m", "YOLO11m", "YOLOv8m"), required=True)
+parser.add_argument("--model", "-m", type=str, default="YOLO12m", help="Model type", choices=YOLO_MODELS, required=True)
 parser.add_argument("--dataset", "-d", type=str, default="POP", help="Dataset used", choices=("POP", "LLVIP"), required=True)
 parser.add_argument("--spectrum", "-s", type=str, default="infrared", help="Spectrum used", choices=("infrared", "visible"))
 
