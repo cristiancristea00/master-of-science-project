@@ -8,13 +8,18 @@ YOLO_V8_MODELS: Final[set] = { "YOLOv8n", "YOLOv8s", "YOLOv8m", "YOLOv8l", "YOLO
 YOLO_V11_MODELS: Final[set] = { "YOLO11n", "YOLO11s", "YOLO11m", "YOLO11l", "YOLO11x" }
 YOLO_V12_MODELS: Final[set] = { "YOLO12n", "YOLO12s", "YOLO12m", "YOLO12l", "YOLO12x" }
 
+RESPONSE_TRUE: Final[set] = { "True", "true", "TRUE", "T", "t", "Yes", "yes", "YES", "Y", "y", "1" }
+RESPONSE_FALSE: Final[set] = { "False", "false", "FALSE", "F", "f", "No", "no", "NO", "N", "n", "0" }
+
 YOLO_MODELS: Final[set] = YOLO_V8_MODELS | YOLO_V11_MODELS | YOLO_V12_MODELS
+RESPONSES: Final[set] = RESPONSE_TRUE | RESPONSE_FALSE
 
 # Create a command line argument processor for model and dataset
 parser = argparse.ArgumentParser(description="YOLO Training and Testing")
 parser.add_argument("--model", "-m", type=str, default="YOLO12m", help="Model type", choices=YOLO_MODELS, required=True)
 parser.add_argument("--dataset", "-d", type=str, default="POP", help="Dataset used", choices=("POP", "LLVIP"), required=True)
 parser.add_argument("--spectrum", "-s", type=str, default="infrared", help="Spectrum used", choices=("infrared", "visible"))
+parser.add_argument("--resume", "-r", type=str, default="False", help="Resume training", choices=RESPONSES)
 
 ARGUMENTS: Final[argparse.Namespace] = parser.parse_args()
 
@@ -27,13 +32,16 @@ DATASET_USED: Final[str] = ARGUMENTS.dataset
 # Spectrum used
 SPECTRUM: Final[str] = ARGUMENTS.spectrum
 
+# Resume training
+RESUME: Final[bool] = ARGUMENTS.resume in RESPONSE_TRUE
+
 # General train parameters
 EPOCHS: Final[int] = 1000
 PATIENCE: Final[int] = 100
 BATCH: Final[float] = 0.90
 IMAGE_SIZE: Final[int] = 1024
 SAVE: Final[bool] = True
-CACHE: Final[bool] = True
+CACHE: Final[str] = "disk"
 WORKERS: Final[int] = 16
 PROJECT: Final[str] = "YOLO"
 NAME: Final[str] = f"{MODEL_TYPE.upper()}_{DATASET_USED.upper()}" if DATASET_USED != "LLVIP" else f"{MODEL_TYPE.upper()}_{DATASET_USED.upper()}_{SPECTRUM.upper()}"
@@ -73,7 +81,8 @@ def main() -> None:
         seed=SEED,
         deterministic=DETERMINISTIC,
         plots=PLOTS,
-        amp=AMP
+        amp=AMP,
+        resume=RESUME
     )
 
     # Save the results to a file

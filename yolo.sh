@@ -42,14 +42,15 @@ echo ""
 MODEL=$1
 DATASET=$2
 SPECTRUM=$3
+RESUME=$4
 
 # Run YOLO training
 echo "Starting YOLO training on $(date '+%A, %-d %B %Y, %I:%M:%S %p')"
 
 if [ -z "$SPECTRUM" ]; then
-    python yolo.py --model $MODEL --dataset $DATASET || { echo "YOLO training failed with exit code $?"; exit 1; }
+    python yolo.py --model $MODEL --dataset $DATASET --resume $RESUME || { echo "YOLO training failed with exit code $?"; exit 1; }
 else
-    python yolo.py --model $MODEL --dataset $DATASET --spectrum $SPECTRUM || { echo "YOLO training failed with exit code $?"; exit 1; }
+    python yolo.py --model $MODEL --dataset $DATASET --spectrum $SPECTRUM --resume $RESUME || { echo "YOLO training failed with exit code $?"; exit 1; }
 fi
 
 echo "Job completed successfully on $(date '+%A, %-d %B %Y, %I:%M:%S %p')"
