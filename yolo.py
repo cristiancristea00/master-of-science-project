@@ -52,9 +52,10 @@ SEED: Final[int] = 42
 DETERMINISTIC: Final[bool] = False
 PLOTS: Final[bool] = True
 AMP: Final[bool] = False
+DEVICE: Final[str] = "0"
 
 
-MODEL_NAME: Final[str] = f"{MODEL_TYPE.lower()}.pt"
+MODEL_NAME: Final[str] = f"{PROJECT}/{NAME}/weights/last.pt" if RESUME else  f"{MODEL_TYPE.lower()}.pt"
 DATASETS_PATH: Final[Path] = Path("datasets")
 DATASET_YAML: Final[Path] = DATASETS_PATH / DATASET_USED / "data.yaml" if DATASET_USED != "LLVIP" else DATASETS_PATH / DATASET_USED / f"data_{SPECTRUM}.yaml"
 
@@ -82,6 +83,7 @@ def main() -> None:
         deterministic=DETERMINISTIC,
         plots=PLOTS,
         amp=AMP,
+        device=DEVICE,
         resume=RESUME
     )
 
